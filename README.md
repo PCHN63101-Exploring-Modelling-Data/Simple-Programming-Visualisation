@@ -1,1 +1,1 @@
-# SImple-Programming-Visualisation
+# Simple-Programming-Visualisation
