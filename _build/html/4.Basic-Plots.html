@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Basic Plots &#8212; Simple Programming &amp; Visualisation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/test.css?v=90b7ad94" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '4.Basic-Plots';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Editing and arranging plots" href="5.Improving-Plots.html" />
+    <link rel="prev" title="For Loops in R" href="3.For-Loops.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0.intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Simple Programming & Visualisation - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Simple Programming & Visualisation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0.intro.html">
+                    Introduction: Simple Programming and Visualisation
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.Conditional-Programming.html">Conditional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.Your-Own-Functions.html">Writing Your Own Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.For-Loops.html">For Loops in R</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.Improving-Plots.html">Editing and arranging plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Exploring-Modelling-Data/Simple-Programming-Visualisation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Exploring-Modelling-Data/Simple-Programming-Visualisation/issues/new?title=Issue%20on%20page%20%2F4.Basic-Plots.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/4.Basic-Plots.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic Plots</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-plot">Scatter plots <code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-hist">Histograms: <code class="docutils literal notranslate"><span class="pre">hist()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plots-boxplot">Box plots: <code class="docutils literal notranslate"><span class="pre">boxplot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-plots-barplot">Bar plots: <code class="docutils literal notranslate"><span class="pre">barplot()</span></code></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-plots">
+<h1>Basic Plots<a class="headerlink" href="#basic-plots" title="Link to this heading">#</a></h1>
+<p>One of R’s strengths is its ability to produce high-quality plots relatively easily. In this section, we will introduce four common plotting functions: <code class="docutils literal notranslate"><span class="pre">plot()</span></code>, <code class="docutils literal notranslate"><span class="pre">hist()</span></code>, <code class="docutils literal notranslate"><span class="pre">boxplot()</span></code>, and <code class="docutils literal notranslate"><span class="pre">barplot()</span></code>. In the next section, we will see how to customise and improve these plots.</p>
+<section id="scatter-plots-plot">
+<h2>Scatter plots <code class="docutils literal notranslate"><span class="pre">plot()</span></code><a class="headerlink" href="#scatter-plots-plot" title="Link to this heading">#</a></h2>
+<p>When you have two numeric variables, a scatter plot is a quick way to explore the relationship between them. For example, we can investigate whether penguins’ bill lengths and flipper lengths are related:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">bill_len</span><span class="p">,</span><span class="w"> </span><span class="n">penguins</span><span class="o">$</span><span class="n">flipper_len</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/bdf57ef4fad990319556ea624371772e77ba0fd1491a01d8012b2603441f62aa.png"><img alt="_images/bdf57ef4fad990319556ea624371772e77ba0fd1491a01d8012b2603441f62aa.png" src="_images/bdf57ef4fad990319556ea624371772e77ba0fd1491a01d8012b2603441f62aa.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function requires an <code class="docutils literal notranslate"><span class="pre">x</span></code> and a <code class="docutils literal notranslate"><span class="pre">y</span></code> variable. The first argument is used for the x-axis, so here it is <code class="docutils literal notranslate"><span class="pre">penguins$bill_len</span></code>. The second argument is used for the y-axis, so here it is <code class="docutils literal notranslate"><span class="pre">penguins$flipper_len</span></code>.</p>
+<p>The plot suggests a clear positive relationship: as bill length increases, flipper length also tends to increase.</p>
+<p>There is a lot we could customise, but for now we can add a title and clear axis labels:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">bill_len</span><span class="p">,</span><span class="n">penguins</span><span class="o">$</span><span class="n">flipper_len</span><span class="p">,</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bill Length vs Flipper Length&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bill Length (mm)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Flipper Length (mm)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/022590efd200c0521895882225506396ced32dcc4558778991cf42879d405e2b.png"><img alt="_images/022590efd200c0521895882225506396ced32dcc4558778991cf42879d405e2b.png" src="_images/022590efd200c0521895882225506396ced32dcc4558778991cf42879d405e2b.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>We have provided three additional arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main</span></code> sets the plot title.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xlab</span></code> sets the x-axis label.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ylab</span></code> sets the y-axis label.</p></li>
+</ul>
+</section>
+<section id="histograms-hist">
+<h2>Histograms: <code class="docutils literal notranslate"><span class="pre">hist()</span></code><a class="headerlink" href="#histograms-hist" title="Link to this heading">#</a></h2>
+<p>It is often useful to see how a numeric variable is distributed. A histogram can show the approximate range of values and which values occur most often. Let’s look at the distribution of penguin body mass:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/ebecaf2627c6a1c3803476f380ae99a5be412a83ca23accf3531f5d672dbbb47.png"><img alt="_images/ebecaf2627c6a1c3803476f380ae99a5be412a83ca23accf3531f5d672dbbb47.png" src="_images/ebecaf2627c6a1c3803476f380ae99a5be412a83ca23accf3531f5d672dbbb47.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">hist()</span></code> function needs only a numeric vector to produce a histogram. Again, there is plenty we could customise. Here, we add an informative title and axis label, and use more bins to show the distribution in greater detail:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">,</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Histogram of Body Mass&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body Mass (g)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">breaks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">14</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/fcf3eca7d74b411c1aa1b8680ab0904f607ba7727dfa6096327f90b6d8196089.png"><img alt="_images/fcf3eca7d74b411c1aa1b8680ab0904f607ba7727dfa6096327f90b6d8196089.png" src="_images/fcf3eca7d74b411c1aa1b8680ab0904f607ba7727dfa6096327f90b6d8196089.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>As before, we added <code class="docutils literal notranslate"><span class="pre">main</span></code> and <code class="docutils literal notranslate"><span class="pre">xlab</span></code> arguments. We also added the <code class="docutils literal notranslate"><span class="pre">breaks</span></code> argument. A break marks the boundary between one bin and the next. The previous plot used seven bins, while this plot uses fourteen.</p>
+<p>R will automatically choose a number of bins, but you can adjust <code class="docutils literal notranslate"><span class="pre">breaks</span></code> to show more or less detail.</p>
+</section>
+<section id="box-plots-boxplot">
+<h2>Box plots: <code class="docutils literal notranslate"><span class="pre">boxplot()</span></code><a class="headerlink" href="#box-plots-boxplot" title="Link to this heading">#</a></h2>
+<p>Box plots are also useful for assessing a distribution, particularly when you want to compare a numeric variable across categories.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">boxplot</span><span class="p">(</span>
+<span class="w">  </span><span class="n">body_mass</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="n">species</span><span class="p">,</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="p">,</span>
+<span class="w">  </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Species&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body mass (g)&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Penguin body mass by species&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/42d4929f1d8795f735e72a04a3dbdc00d03f23e39b0b5c0d431ea30ab7a4e00b.png"><img alt="_images/42d4929f1d8795f735e72a04a3dbdc00d03f23e39b0b5c0d431ea30ab7a4e00b.png" src="_images/42d4929f1d8795f735e72a04a3dbdc00d03f23e39b0b5c0d431ea30ab7a4e00b.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>In the <code class="docutils literal notranslate"><span class="pre">boxplot()</span></code> call, we use the syntax <code class="docutils literal notranslate"><span class="pre">body_mass</span> <span class="pre">~</span> <span class="pre">species</span></code>, as we did with <code class="docutils literal notranslate"><span class="pre">aggregate()</span></code> last week. In other words, we are grouping body mass by species.</p>
+<p>Each box plot shows:</p>
+<ul class="simple">
+<li><p>The median, shown by the thick line inside the box.</p></li>
+<li><p>The interquartile range (IQR), represented by the box and covering the 25th to 75th percentiles.</p></li>
+<li><p>The whiskers, which extend to the most extreme data points within 1.5 times the IQR.</p></li>
+<li><p>Potential outliers, shown as individual points beyond the whiskers.</p></li>
+</ul>
+<p>The plot shows at a glance that Gentoo penguins are considerably heavier than the other two species.</p>
+</section>
+<section id="bar-plots-barplot">
+<h2>Bar plots: <code class="docutils literal notranslate"><span class="pre">barplot()</span></code><a class="headerlink" href="#bar-plots-barplot" title="Link to this heading">#</a></h2>
+<p>Bar plots show counts or other summary values for categories. For example, we can count the number of penguins in each species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">barplot</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/96b8fcdbe36e06b66c58c46a4a88727c4bf5623129be5dfaaf9b8d37ae612e43.png"><img alt="_images/96b8fcdbe36e06b66c58c46a4a88727c4bf5623129be5dfaaf9b8d37ae612e43.png" src="_images/96b8fcdbe36e06b66c58c46a4a88727c4bf5623129be5dfaaf9b8d37ae612e43.png" style="width: 420px; height: 420px;" /></a>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">barplot()</span></code> function expects the heights of the bars as its first argument. Here, <code class="docutils literal notranslate"><span class="pre">table(penguins$species)</span></code> creates a table of counts for each species.</p>
+<p>When the heights are supplied as a table or named vector, R uses those names as the labels below each bar. Otherwise, you can use the <code class="docutils literal notranslate"><span class="pre">names.arg</span></code> argument to specify the labels yourself.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="3.For-Loops.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">For Loops in R</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="5.Improving-Plots.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Editing and arranging plots</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plots-plot">Scatter plots <code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histograms-hist">Histograms: <code class="docutils literal notranslate"><span class="pre">hist()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plots-boxplot">Box plots: <code class="docutils literal notranslate"><span class="pre">boxplot()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-plots-barplot">Bar plots: <code class="docutils literal notranslate"><span class="pre">barplot()</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr George Farmer & Dr Martyn McFarquhar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

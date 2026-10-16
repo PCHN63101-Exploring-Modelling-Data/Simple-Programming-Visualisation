@@ -1,0 +1,12 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: 0.intro
+chapters:
+- file: 1.Conditional-Programming
+- file: 2.Your-Own-Functions
+- file: 3.For-Loops
+- file: 4.Basic-Plots 
+- file: 5.Improving-Plots
+- file: summary

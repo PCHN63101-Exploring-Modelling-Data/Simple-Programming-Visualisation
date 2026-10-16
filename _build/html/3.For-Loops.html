@@ -1,0 +1,713 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>For Loops in R &#8212; Simple Programming &amp; Visualisation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/test.css?v=90b7ad94" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3.For-Loops';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic Plots" href="4.Basic-Plots.html" />
+    <link rel="prev" title="Writing Your Own Functions" href="2.Your-Own-Functions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0.intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Simple Programming & Visualisation - Home"/>
+    <script>document.write(`<img src="_static/logo.png" class="logo__image only-dark" alt="Simple Programming & Visualisation - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0.intro.html">
+                    Introduction: Simple Programming and Visualisation
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.Conditional-Programming.html">Conditional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.Your-Own-Functions.html">Writing Your Own Functions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">For Loops in R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.Basic-Plots.html">Basic Plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5.Improving-Plots.html">Editing and arranging plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Exploring-Modelling-Data/Simple-Programming-Visualisation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Exploring-Modelling-Data/Simple-Programming-Visualisation/issues/new?title=Issue%20on%20page%20%2F3.For-Loops.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/3.For-Loops.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>For Loops in R</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure">Basic Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-values">Looping Over Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-positions">Looping Over Positions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-seq-along">Why use <code class="docutils literal notranslate"><span class="pre">seq_along()</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-results-from-a-loop">Storing Results From a Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops-versus-vectorised-r-code">For Loops Versus Vectorised R Code</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="for-loops-in-r">
+<h1>For Loops in R<a class="headerlink" href="#for-loops-in-r" title="Link to this heading">#</a></h1>
+<p>A for loop repeats a set of instructions once for each value in a sequence. They are useful when you need to apply the same operation to every item in a vector, list, or set of rows.</p>
+<section id="basic-structure">
+<h2>Basic Structure<a class="headerlink" href="#basic-structure" title="Link to this heading">#</a></h2>
+<p>The general structure of a <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for </span><span class="p">(</span><span class="n">variable</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">sequence</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="c1"># Code to repeat</span>
+<span class="w">  </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">variable</span></code> is a temporary name that changes on each repetition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sequence</span></code> is the set of values to work through.</p></li>
+<li><p>Code inside <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">}</span></code> runs once for every value in the sequence.</p></li>
+</ul>
+<p>For example:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">1</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">2</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">3</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">4</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">5</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">i</span></code> takes the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, and <code class="docutils literal notranslate"><span class="pre">5</span></code>.</p>
+</section>
+<section id="looping-over-values">
+<h2>Looping Over Values<a class="headerlink" href="#looping-over-values" title="Link to this heading">#</a></h2>
+<p>You can loop directly through a vector of values.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">mood_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">score</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">mood_scores</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">12</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">18</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">9</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">15</span>
+</pre></div>
+</div>
+<p>This processes each participant’s mood score in turn.</p>
+</section>
+<section id="looping-over-positions">
+<h2>Looping Over Positions<a class="headerlink" href="#looping-over-positions" title="Link to this heading">#</a></h2>
+<p>Often, you need the <strong>position</strong> of each value rather than the value alone. Use <code class="docutils literal notranslate"><span class="pre">seq_along()</span></code> to loop over vector indices safely.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">anxiety_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">14</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">11</span><span class="p">)</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="nf">seq_along</span><span class="p">(</span><span class="n">anxiety_scores</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="n">anxiety_scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[1] 8
+[1] 14
+[1] 20
+[1] 11
+</pre></div>
+</div>
+<p>In this example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">i</span></code> is the position: <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, then <code class="docutils literal notranslate"><span class="pre">4</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anxiety_scores[i]</span></code> retrieves the score at that position.</p></li>
+</ul>
+<p>You can use this to report participant numbers:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="nf">seq_along</span><span class="p">(</span><span class="n">anxiety_scores</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nf">message</span><span class="p">(</span>
+<span class="w">    </span><span class="s">&quot;Participant &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span>
+<span class="w">    </span><span class="s">&quot; has an anxiety score of &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">anxiety_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w">  </span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Participant</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">anxiety</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="m">8</span>
+<span class="n">Participant</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">anxiety</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="m">14</span>
+<span class="n">Participant</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">anxiety</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="m">20</span>
+<span class="n">Participant</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">anxiety</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="m">11</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Printing a message during each iteration of a loop can be a useful way to track progress. For example, if you are importing and pre-processing large raw datasets for each participant, the process could take minutes—or even days. A console message such as <code class="docutils literal notranslate"><span class="pre">Participant</span> <span class="pre">1</span> <span class="pre">of</span> <span class="pre">30</span> <span class="pre">complete</span></code> gives you immediate feedback that the code is running and helps you estimate how long the remaining steps may take.</p>
+</div>
+<section id="why-use-seq-along">
+<h3>Why use <code class="docutils literal notranslate"><span class="pre">seq_along()</span></code>?<a class="headerlink" href="#why-use-seq-along" title="Link to this heading">#</a></h3>
+<p>Avoid this:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">length</span><span class="p">(</span><span class="n">anxiety_scores</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="n">anxiety_scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">anxiety_scores</span></code> is empty, <code class="docutils literal notranslate"><span class="pre">length(anxiety_scores)</span></code> is <code class="docutils literal notranslate"><span class="pre">0</span></code>, and <code class="docutils literal notranslate"><span class="pre">1:0</span></code> produces <code class="docutils literal notranslate"><span class="pre">c(1,</span> <span class="pre">0)</span></code>. This can cause unexpected results.</p>
+<p>Instead, use:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="nf">seq_along</span><span class="p">(</span><span class="n">anxiety_scores</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">print</span><span class="p">(</span><span class="n">anxiety_scores</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the vector is empty, <code class="docutils literal notranslate"><span class="pre">seq_along(anxiety_scores)</span></code> is also empty, so the loop does not run.</p>
+</section>
+</section>
+<section id="storing-results-from-a-loop">
+<h2>Storing Results From a Loop<a class="headerlink" href="#storing-results-from-a-loop" title="Link to this heading">#</a></h2>
+<p>A loop does not automatically save its output. Usually, you create an empty object before the loop and fill it during each repetition.</p>
+<p>For example, suppose you want to convert raw anxiety scores into percentages.</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">raw_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)</span>
+<span class="n">maximum_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">24</span>
+
+<span class="n">percentage_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">raw_scores</span><span class="p">))</span>
+
+<span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="nf">seq_along</span><span class="p">(</span><span class="n">raw_scores</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="n">percentage_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">raw_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">maximum_score</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span>
+<span class="w">  </span>
+<span class="p">}</span>
+
+<span class="n">percentage_scores</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">50.00000</span><span class="w"> </span><span class="m">75.00000</span><span class="w"> </span><span class="m">62.50000</span><span class="w"> </span><span class="m">83.33333</span>
+</pre></div>
+</div>
+<p>The line below creates a numeric vector of the correct length:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">percentage_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">raw_scores</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Then each calculated percentage is stored in the matching position:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">percentage_scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kc">...</span>
+</pre></div>
+</div>
+</section>
+<section id="for-loops-versus-vectorised-r-code">
+<h2>For Loops Versus Vectorised R Code<a class="headerlink" href="#for-loops-versus-vectorised-r-code" title="Link to this heading">#</a></h2>
+<p>For some of the simple examples above you (e.g., calculating a percentage) you would be much better off using R’s vectorised functions rather than a for loop.</p>
+<p>For example, calculate percentages without a loop:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">raw_scores</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">12</span><span class="p">,</span><span class="w"> </span><span class="m">18</span><span class="p">,</span><span class="w"> </span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)</span>
+<span class="n">maximum_score</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">24</span>
+
+<span class="p">(</span><span class="n">raw_scores</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">maximum_score</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="m">50.00000</span><span class="w"> </span><span class="m">75.00000</span><span class="w"> </span><span class="m">62.50000</span><span class="w"> </span><span class="m">83.33333</span>
+</pre></div>
+</div>
+<p>You may encounter loops in other people’s code, or you may find your self doing some complex analysis for which there doesn’t seem to be a vectorised solution. In which case For loops give you the flexibility to create something bespoke.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Approach</p></th>
+<th class="head"><p>Best use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>For loop</strong></p></td>
+<td><p>Complex multi-step logic, checks, messages, or calculations that depend on previous iterations</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Vectorised code</strong></p></td>
+<td><p>Simple calculations applied independently to every value</p></td>
+</tr>
+<tr class="row-even"><td><p><strong><code class="docutils literal notranslate"><span class="pre">apply()</span></code> family</strong></p></td>
+<td><p>Applying a function across rows or columns</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="2.Your-Own-Functions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Writing Your Own Functions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="4.Basic-Plots.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Basic Plots</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure">Basic Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-values">Looping Over Values</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#looping-over-positions">Looping Over Positions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-seq-along">Why use <code class="docutils literal notranslate"><span class="pre">seq_along()</span></code>?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storing-results-from-a-loop">Storing Results From a Loop</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#for-loops-versus-vectorised-r-code">For Loops Versus Vectorised R Code</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr George Farmer & Dr Martyn McFarquhar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
