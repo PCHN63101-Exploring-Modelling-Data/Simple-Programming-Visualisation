@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Editing and arranging plots &#8212; Simple Programming &amp; Visualisation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/test.css?v=90b7ad94" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '5.Improving-Plots';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Summary" href="summary.html" />
+    <link rel="prev" title="Basic Plots" href="4.Basic-Plots.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="0.intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo.png" class="logo__image only-light" alt="Simple Programming & Visualisation - Home"/>
+    <img src="_static/logo.png" class="logo__image only-dark pst-js-only" alt="Simple Programming & Visualisation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="0.intro.html">
+                    Introduction: Simple Programming and Visualisation
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1.Conditional-Programming.html">Conditional Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.Your-Own-Functions.html">Writing Your Own Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3.For-Loops.html">For Loops in R</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4.Basic-Plots.html">Basic Plots</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Editing and arranging plots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="summary.html">Summary</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Exploring-Modelling-Data/Simple-Programming-Visualisation" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/PCHN63101-Exploring-Modelling-Data/Simple-Programming-Visualisation/issues/new?title=Issue%20on%20page%20%2F5.Improving-Plots.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/5.Improving-Plots.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Editing and arranging plots</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keeping-axis-scales-consistent">Keeping axis scales consistent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resetting-graphical-settings">Resetting graphical settings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colours">Colours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lines-and-points">Lines and points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="editing-and-arranging-plots">
+<h1>Editing and arranging plots<a class="headerlink" href="#editing-and-arranging-plots" title="Link to this heading">#</a></h1>
+<p>Often, you will want to compare several plots at once. You can arrange plots in rows and columns using <code class="docutils literal notranslate"><span class="pre">par()</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">[</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;Adelie&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Adelie&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body Mass (g)&quot;</span><span class="p">)</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">[</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;Chinstrap&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Chinstrap&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body Mass (g)&quot;</span><span class="p">)</span>
+<span class="w">    </span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">[</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;Gentoo&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Gentoo&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body Mass (g)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/2a57dbf81d0b4234c56103604471349e9081231190d88a854602e6611a87520a.png"><img alt="_images/2a57dbf81d0b4234c56103604471349e9081231190d88a854602e6611a87520a.png" src="_images/2a57dbf81d0b4234c56103604471349e9081231190d88a854602e6611a87520a.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">par()</span></code> function sets graphical parameters. The <code class="docutils literal notranslate"><span class="pre">mfrow</span></code> argument specifies the number of rows and columns used to arrange plots. It takes a vector in the form:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">columns</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>For example, a two-row by two-column layout would use:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">))</span>
+</pre></div>
+</div>
+<section id="keeping-axis-scales-consistent">
+<h2>Keeping axis scales consistent<a class="headerlink" href="#keeping-axis-scales-consistent" title="Link to this heading">#</a></h2>
+<p>The histograms above show body mass for each penguin species. To compare their distributions fairly, it helps to use the same axis limits. Otherwise, R may choose different scales for each plot.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">xlim</span></code> to set the lower and upper limits of the x-axis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">[</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;Adelie&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Adelie&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body Mass (g)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span><span class="m">7000</span><span class="p">))</span>
+
+<span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">[</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;Chinstrap&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Chinstrap&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body Mass (g)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span><span class="m">7000</span><span class="p">))</span>
+<span class="w">    </span>
+<span class="nf">hist</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">body_mass</span><span class="p">[</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="o">==</span><span class="s">&quot;Gentoo&quot;</span><span class="p">],</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Gentoo&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Body Mass (g)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">xlim</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span><span class="m">7000</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/3963afcb773bf648fc5792f498431075b5cd1ecdbea688ec209d074e4257a713.png"><img alt="_images/3963afcb773bf648fc5792f498431075b5cd1ecdbea688ec209d074e4257a713.png" src="_images/3963afcb773bf648fc5792f498431075b5cd1ecdbea688ec209d074e4257a713.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>Using consistent <code class="docutils literal notranslate"><span class="pre">xlim</span></code> and <code class="docutils literal notranslate"><span class="pre">ylim</span></code> values is particularly important when comparing plots side by side.</p>
+</section>
+<section id="resetting-graphical-settings">
+<h2>Resetting graphical settings<a class="headerlink" href="#resetting-graphical-settings" title="Link to this heading">#</a></h2>
+<p>Changes made with <code class="docutils literal notranslate"><span class="pre">par()</span></code> remain active for later plots. For example, after running:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>new plots will continue to use a three-row layout until you change the setting.</p>
+<p>You can reset to a single plot layout with:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="colours">
+<h2>Colours<a class="headerlink" href="#colours" title="Link to this heading">#</a></h2>
+<p>Most plotting functions have a <code class="docutils literal notranslate"><span class="pre">col</span></code> argument that controls the colours used in a plot. You can use recognised colour names, such as <code class="docutils literal notranslate"><span class="pre">&quot;blue&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;lightpink&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;darkgreen&quot;</span></code>. Rstudio will highlight the text in the appropriate colour if it is a recognised name.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">barplot</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="p">,</span><span class="n">penguins</span><span class="o">$</span><span class="n">island</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Penguin species by island&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Island&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;lightblue&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lightpink&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;lightgreen&quot;</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">beside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/fbb57909663727feb0c164396f7f62df4a86ddb49c472a7c88b1c5f323539fa7.png"><img alt="_images/fbb57909663727feb0c164396f7f62df4a86ddb49c472a7c88b1c5f323539fa7.png" src="_images/fbb57909663727feb0c164396f7f62df4a86ddb49c472a7c88b1c5f323539fa7.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>Alternatively you can specify colours using RGB values or hexadecimal codes. The University of Manchester’s official colour palette is Purple, Yellow and Grey with specified RGB values:</p>
+<ul class="simple">
+<li><p>Purple (109, 0, 157)</p></li>
+<li><p>Yellow (255, 204, 51)</p></li>
+<li><p>Grey (149, 149, 151)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">uomP</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rgb</span><span class="p">(</span><span class="m">109</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">157</span><span class="p">,</span><span class="n">maxColorValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">255</span><span class="p">)</span>
+<span class="n">uomY</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rgb</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="w"> </span><span class="m">204</span><span class="p">,</span><span class="w"> </span><span class="m">51</span><span class="p">,</span><span class="n">maxColorValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">255</span><span class="p">)</span>
+<span class="n">uomG</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">rgb</span><span class="p">(</span><span class="m">149</span><span class="p">,</span><span class="w"> </span><span class="m">149</span><span class="p">,</span><span class="w"> </span><span class="m">151</span><span class="p">,</span><span class="n">maxColorValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">255</span><span class="p">)</span>
+
+
+<span class="nf">barplot</span><span class="p">(</span>
+<span class="w">  </span><span class="nf">table</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="p">,</span><span class="w"> </span><span class="n">penguins</span><span class="o">$</span><span class="n">island</span><span class="p">),</span>
+<span class="w">  </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Penguin species by island&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Island&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Count&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">uomP</span><span class="p">,</span><span class="w"> </span><span class="n">uomY</span><span class="p">,</span><span class="w"> </span><span class="n">uomG</span><span class="p">),</span>
+<span class="w">  </span><span class="n">legend.text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span>
+<span class="w">  </span><span class="n">beside</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/e32389d53220179dd61b641e50686e867ad479e24d26e75d7fd584bfc09cf30a.png"><img alt="_images/e32389d53220179dd61b641e50686e867ad479e24d26e75d7fd584bfc09cf30a.png" src="_images/e32389d53220179dd61b641e50686e867ad479e24d26e75d7fd584bfc09cf30a.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">beside</span></code> argument controls how the bars are arranged:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">beside</span> <span class="pre">=</span> <span class="pre">TRUE</span></code> places the species bars side by side for each island.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">beside</span> <span class="pre">=</span> <span class="pre">FALSE</span></code> stacks the species bars on top of one another. This is the default.</p></li>
+</ul>
+<p>You can also assign colours automatically using a factor. For example, <code class="docutils literal notranslate"><span class="pre">species</span></code> is a factor with three levels, so R uses a different palette colour for each species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">bill_len</span><span class="p">,</span>
+<span class="w">    </span><span class="n">penguins</span><span class="o">$</span><span class="n">flipper_len</span><span class="p">,</span>
+<span class="w">    </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bill Length vs Flipper Length&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Bill Length (mm)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Flipper Length (mm)&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="p">,</span>
+<span class="w">    </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">)</span>
+
+<span class="nf">legend</span><span class="p">(</span><span class="s">&quot;topleft&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">legend</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">levels</span><span class="p">(</span><span class="n">penguins</span><span class="o">$</span><span class="n">species</span><span class="p">),</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">19</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/cbe4e952743149633470a893df12e63ac79576e0f85462d4081afb014d5f2a92.png"><img alt="_images/cbe4e952743149633470a893df12e63ac79576e0f85462d4081afb014d5f2a92.png" src="_images/cbe4e952743149633470a893df12e63ac79576e0f85462d4081afb014d5f2a92.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<p>Factors are stored internally as integer codes. In this example, the three levels of <code class="docutils literal notranslate"><span class="pre">species</span></code> correspond to the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, and <code class="docutils literal notranslate"><span class="pre">3</span></code>, and R uses the first three colours from the active palette.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">legend()</span></code> function adds a legend to an existing plot.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can use palettes other than the default. It is good practice to choose accessible colours that remain distinguishable for people with colour-vision differences.</p>
+<p>The Okabe-Ito palette is a widely used accessible option:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">palette</span><span class="p">(</span><span class="nf">palette.colors</span><span class="p">(</span><span class="n">palette</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Okabe-Ito&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>After setting the palette, subsequent plots will use its colours by default.</p>
+</div>
+</section>
+<section id="lines-and-points">
+<h2>Lines and points<a class="headerlink" href="#lines-and-points" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">plot()</span></code> function does not only create scatter plots. It can plot any values that map onto x and y coordinates.</p>
+<p>The built-in <code class="docutils literal notranslate"><span class="pre">pressure</span></code> dataset contains measurements of vapour pressure at different temperatures:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">pressure</span><span class="o">$</span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">pressure</span><span class="o">$</span><span class="n">pressure</span><span class="p">,</span>
+<span class="w">     </span><span class="n">type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">lty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">     </span><span class="n">lwd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">     </span><span class="n">main</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Vapor Pressure vs Temperature&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">xlab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Temperature (°C)&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">ylab</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Pressure (mm of mercury)&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="n">pch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">     </span><span class="n">cex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="nf">abline</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">250</span><span class="p">,</span><span class="n">lty</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="n">col</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/bd3da7256d5a2383c2dbcd132d87010c410d32a2110132f6f883d7bfcd055e09.png"><img alt="_images/bd3da7256d5a2383c2dbcd132d87010c410d32a2110132f6f883d7bfcd055e09.png" src="_images/bd3da7256d5a2383c2dbcd132d87010c410d32a2110132f6f883d7bfcd055e09.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">&quot;b&quot;</span></code></p></td>
+<td><p>Draws both points and lines.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">&quot;l&quot;</span></code></p></td>
+<td><p>Draws lines only.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">lty</span></code></p></td>
+<td><p>Sets the line type. For example, <code class="docutils literal notranslate"><span class="pre">1</span></code> is solid and <code class="docutils literal notranslate"><span class="pre">2</span></code> is dashed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">lwd</span></code></p></td>
+<td><p>Sets the line width.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pch</span></code></p></td>
+<td><p>Sets the point shape. <code class="docutils literal notranslate"><span class="pre">1</span></code> is an empty circle and <code class="docutils literal notranslate"><span class="pre">19</span></code> is a filled circle.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cex</span></code></p></td>
+<td><p>Changes the size of points and text.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Run the following in the R console to see the available point shapes:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="o">?</span><span class="n">points</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">abline()</span></code> function adds straight lines to an existing plot. In the example above:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">v</span> <span class="pre">=</span> <span class="pre">250</span></code> adds a vertical line that crosses the x-axis at 250.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lty</span> <span class="pre">=</span> <span class="pre">2</span></code> makes the line dashed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">col</span> <span class="pre">=</span> <span class="pre">&quot;red&quot;</span></code> sets the line colour.</p></li>
+</ul>
+<p>To add a horizontal line, use <code class="docutils literal notranslate"><span class="pre">h</span></code> instead of <code class="docutils literal notranslate"><span class="pre">v</span></code>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">lines()</span></code> and <code class="docutils literal notranslate"><span class="pre">points()</span></code> functions add new layers to an existing plot. For example, the code below adds two filled blue points:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">points</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="m">70</span><span class="p">),</span><span class="nf">c</span><span class="p">(</span><span class="m">400</span><span class="p">,</span><span class="m">400</span><span class="p">),</span><span class="n">col</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&#39;blue&#39;</span><span class="p">,</span><span class="n">pch</span><span class="o">=</span><span class="m">19</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="_images/9dc79896fb93f4a525fdf68bf0901a56838e4f64057b6f6425683d554cd0ca58.png"><img alt="_images/9dc79896fb93f4a525fdf68bf0901a56838e4f64057b6f6425683d554cd0ca58.png" src="_images/9dc79896fb93f4a525fdf68bf0901a56838e4f64057b6f6425683d554cd0ca58.png" style="width: 420px; height: 420px;" />
+</a>
+</div>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">par(mfrow</span> <span class="pre">=</span> <span class="pre">c(rows,</span> <span class="pre">columns))</span></code> to arrange multiple plots in one figure.</p></li>
+<li><p>Reset or restore graphical settings after using <code class="docutils literal notranslate"><span class="pre">par()</span></code>.</p></li>
+<li><p>Use consistent <code class="docutils literal notranslate"><span class="pre">xlim</span></code> and <code class="docutils literal notranslate"><span class="pre">ylim</span></code> values when comparing plots.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">col</span></code> to control plot colours and <code class="docutils literal notranslate"><span class="pre">legend()</span></code> to explain them.</p></li>
+<li><p>Choose accessible palettes and do not rely on colour alone to distinguish groups.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">lty</span></code>, <code class="docutils literal notranslate"><span class="pre">lwd</span></code>, <code class="docutils literal notranslate"><span class="pre">pch</span></code>, and <code class="docutils literal notranslate"><span class="pre">cex</span></code> to control the appearance of lines and points.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">abline()</span></code>, <code class="docutils literal notranslate"><span class="pre">lines()</span></code>, and <code class="docutils literal notranslate"><span class="pre">points()</span></code> to add layers to an existing plot.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            name: "ir",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="4.Basic-Plots.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Basic Plots</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="summary.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Summary</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keeping-axis-scales-consistent">Keeping axis scales consistent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#resetting-graphical-settings">Resetting graphical settings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#colours">Colours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lines-and-points">Lines and points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Dr George Farmer & Dr Martyn McFarquhar
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
